@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Serilog.Sinks.Radianz/Serilog.Sinks.Radianz.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Serilog.Sinks.Radianz.Tests/Serilog.Sinks.Radianz.Tests.csproj" />
+  </Folder>
+</Solution>
