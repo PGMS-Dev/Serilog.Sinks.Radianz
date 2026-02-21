@@ -84,10 +84,11 @@ public enum RadianzTransportType
 public class HttpTransportOptions
 {
     /// <summary>
-    /// Base URL of the Radianz API endpoint
+    /// Base URL of the Radianz API endpoint.
+    /// Defaults to https://radianz.io (production).
     /// </summary>
     [Required]
-    public string BaseUrl { get; set; } = string.Empty;
+    public string BaseUrl { get; set; } = "https://radianz.io";
 
     /// <summary>
     /// API endpoint path for log ingestion (relative to BaseUrl)

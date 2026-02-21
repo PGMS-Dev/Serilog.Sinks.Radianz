@@ -13,13 +13,14 @@ namespace Serilog.Sinks.Radianz.Extensions;
 public static class LoggerConfigurationRadianzExtensions
 {
     /// <summary>
-    /// Adds a Radianz sink with HTTP transport to the logger configuration
+    /// Adds a Radianz sink with HTTP transport to the logger configuration.
+    /// BaseUrl defaults to https://radianz.io (production) if not specified.
     /// </summary>
     public static LoggerConfiguration RadianzHttp(
         this LoggerSinkConfiguration loggerSinkConfiguration,
-        string baseUrl,
         string? clientId = null,
         string? apiKey = null,
+        string? baseUrl = null,
         LogEventLevel restrictedToMinimumLevel = LogEventLevel.Verbose,
         int batchSizeLimit = 50,
         TimeSpan? batchPeriod = null,
@@ -29,15 +30,14 @@ public static class LoggerConfigurationRadianzExtensions
         if (loggerSinkConfiguration == null)
             throw new ArgumentNullException(nameof(loggerSinkConfiguration));
 
-        if (string.IsNullOrWhiteSpace(baseUrl))
-            throw new ArgumentException("Base URL cannot be null or empty", nameof(baseUrl));
+        var effectiveBaseUrl = string.IsNullOrWhiteSpace(baseUrl) ? "https://radianz.io" : baseUrl;
 
         var options = new RadianzSinkOptions
         {
             TransportType = RadianzTransportType.Http,
             HttpOptions = new HttpTransportOptions
             {
-                BaseUrl = baseUrl,
+                BaseUrl = effectiveBaseUrl,
                 ClientId = clientId,
                 ApiKey = apiKey
             },
