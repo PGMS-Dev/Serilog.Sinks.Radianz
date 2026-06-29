@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using Polly;
-using Polly.Extensions.Http;
 using Serilog.Sinks.Radianz.Configuration;
 using Serilog.Sinks.Radianz.Models;
 using System.Net;
